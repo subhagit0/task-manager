@@ -1,0 +1,53 @@
+.logo-icon img {
+    margin-top: 10px;
+}
+
+ul.header-box {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+ul.header-box li:nth-child(2n) {
+    padding-left: 10px;
+}
+
+ul.header-box li:nth-child(3n) {
+    width: 40%;
+    text-align: left;
+    margin-left: 45px;
+}
+
+
+ul.header-box li:nth-child(4n) {
+    width: 33%;
+    text-align: right;
+}
+
+ul.taskmenu {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+ul.taskmenu li {
+    padding-left: 0px!important;
+}
+
+ul.taskmenu li button {
+    background: #0d229b;
+    margin-right: 7px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    ul.header-box li:nth-child(2n) {
+        font-size: 15px;
+    }
+  }

@@ -1,0 +1,59 @@
+ul.login-box{
+    list-style: none;
+    
+    }
+
+.login-box{
+    width: 40%;
+    margin: 0px auto;
+  padding-top: 8%;
+}
+
+.mat-card {
+    box-shadow: 1px 0px 6px #cccccc!important;
+}
+
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+
+  ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+ul.submit-btn {
+    display: flex;
+    justify-content: center;
+}
+
+ul.login-data li:first-child h4 {
+    margin: 0px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #ccc;
+    margin-bottom: 15px;
+    font-size: 17px;
+    border-bottom: solid 1px #e7e7e7;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  .login-box {
+    width: 80%;
+}
+
+.login-box {
+width: 90%;
+}
+
+}

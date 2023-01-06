@@ -1,0 +1,36 @@
+<h1 mat-dialog-title class="underline">Add User <span class="close"><button mat-dialog-close class="close">X</button></span></h1>
+<div mat-dialog-content>
+
+<form [formGroup]="adduser"  (ngSubmit)="addUser()">
+
+<ul class="add-user-block">
+    <li>
+   <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Name</mat-label>
+         <input matInput type="text" placeholder="Enter Path" formControlName="name">
+    </mat-form-field>
+
+    </li>
+    <li>
+        <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>User name</mat-label>
+        <input matInput type="text" placeholder="Enter Path" formControlName="username">
+        </mat-form-field>
+    </li>
+    <li>
+    <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" placeholder="Enter Path" formControlName="password">
+    </mat-form-field>
+    </li>
+
+    <li><button mat-button mat-raised-button color="primary" [disabled]="!adduser.valid">Submit</button></li>
+
+    
+    <!-- [disabled]="!tasks.valid" -->
+</ul>
+
+</form>
+
+</div>
+

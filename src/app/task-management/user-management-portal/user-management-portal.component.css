@@ -1,0 +1,221 @@
+.task-mamangement-main {
+    width: 80%;
+    margin: 0px auto;
+    padding-top: 1%;
+}
+
+.task-mamangement-main h3 {
+    border-bottom: solid 1px #ccc;
+    font-weight: 400;
+    height: 45px;
+}
+
+ul.task-box {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+ul.task-box li:first-child {
+    width: 50%;
+    margin-right: 20px;
+}
+
+ul.task-box li:nth-child(2n) {
+    width: 47%;
+   
+}
+
+ul.task-box li button {
+    margin-top: 15px;   
+}
+
+.file-type .mat-radio-group {
+  margin-top: 5px;
+  display: block;
+}
+
+::ng-deep .file-type label.mat-radio-label {
+  margin-right: 15px !important;
+}
+
+
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+th, td {
+  font-size: 14px;
+  color: #000;
+  border-left: solid 1px #ccc;
+  text-align: center;
+  }
+
+  th.mat-header-cell {
+    text-align: center;
+}
+
+  .mat-form-field {
+    width: 100%;
+}
+
+
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+th, td {
+  font-size: 14px;
+  color: #000;
+  border-left: solid 1px #ccc;
+  text-align: center;
+  }
+
+  th.mat-header-cell {
+    text-align: center;
+}
+
+  .mat-form-field {
+    width: 100%;
+}
+
+.lifting-table-box {
+    border: solid 1px #ccc;
+}
+
+
+.lifting-table-box {
+    border: solid 1px #ccc;
+    box-shadow: 0px 1px 6px #d3d3d3;
+}
+
+table.mat-table th {
+    background: #3f51b5;
+    color: #fff;
+}
+
+span.addtask {
+  float: right;
+  padding-bottom: 3px;
+  display: block;
+  position: relative;
+  margin-bottom: 9px;
+}
+
+.underline {
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 8px;
+}
+
+ul.submit-btn {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+ul.file-type {
+  margin: 0px;
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  padding-bottom: 20px;
+  
+}
+
+ul.file-type li {
+  padding: 0px 0px 9px 0px;
+  width: 50%;
+}
+
+li.file-type-heading p {
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 12px;
+  margin-bottom: 0px;
+}
+
+.mat-dialog-content {
+  overflow: unset;
+}
+
+li.file-type-heading p {
+  margin: 0px;
+}
+
+.lifting-table-box {
+  overflow: auto;
+}
+
+ul.file-type li:first-child {
+  width: 48%;
+  margin-right: 40px
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle{
+  background-color: #3f51b5;
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #3f51b5;
+}
+
+ul.file-type li p {
+  margin-top: 0px;
+}
+
+ul.file-type p {
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 10px;
+}
+
+.close {
+  position: relative;
+  float: right;
+  display: block;
+  margin-top: -7px;
+  margin-right: -6px;
+  color: #a9a9a9;
+  background: transparent;
+  border: none;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+
+ul.add-user-block {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+
+.add-user-block li:last-child{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+  .task-mamangement-main h3 {
+    font-size: 17px;
+  }
+
+}
+
+
