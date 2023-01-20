@@ -21,9 +21,15 @@ token?: string | null;
   constructor(private commonService: CommonService) { }
 
   ngOnInit(): void {
-    this.token = localStorage.getItem('token')
+    this.token = localStorage.getItem('token');
+    this.getTokenMessage();
   }
-
+  
+  getTokenMessage(): void {
+    this.commonService.getTokenMessage().subscribe((data: any) => {
+      this.token = data;
+    })
+  }
   logout() {
     this.commonService.logout();
   }

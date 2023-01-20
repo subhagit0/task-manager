@@ -58,8 +58,11 @@ export class LoginComponent implements OnInit {
                 Swal.fire('', data.details[0].msg);
             } else {
                 localStorage.setItem("token", data.result[0].token);
+                this.router.navigateByUrl('/task-management-portal')
+                // this.router.navigate(['/task-management']);
                 Swal.fire('', 'Successfully loged in');
-                this.router.navigate(['/task-management-portal']);
+                this.commonService.sendTokenMessage(true);
+                local
             }
         })
     }
