@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
                 // this.router.navigate(['/task-management']);
                 Swal.fire('', 'Successfully loged in');
                 this.commonService.sendTokenMessage(true);
-                local
             }
         })
     }
