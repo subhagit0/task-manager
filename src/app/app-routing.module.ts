@@ -10,10 +10,11 @@ import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
 // { path: '', component:TaskManagementComponent }
-  { path: '', component: LoginComponent, resolve: {data: DelayResolver }},
-  { path: 'task-management', component:TaskManagementComponent, resolve: {data: DelayResolver }},
-  { path: 'task-management-portal', component:TaskManagementPortalComponent, resolve: {data: DelayResolver }},
-  { path: 'user-management-portal', component:UserManagementPortalComponent, resolve: {data: DelayResolver }},
+  { path: '**', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent, resolve: {data: DelayResolver }, canActivate: [AuthGuard]},
+  { path: 'task-management', component:TaskManagementComponent, resolve: {data: DelayResolver }, canActivate: [AuthGuard]},
+  { path: 'task-management-portal', component:TaskManagementPortalComponent, resolve: {data: DelayResolver }, canActivate: [AuthGuard]},
+  { path: 'user-management-portal', component:UserManagementPortalComponent, resolve: {data: DelayResolver }, canActivate: [AuthGuard]},
 ]; 
 
 @NgModule({

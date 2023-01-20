@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   authUrl: "https://qangssml.shyamsteel.in/api/task/",
+  apiEndpoint: "https://qangssml.shyamsteel.in/api/task/"
 };
 
 /*

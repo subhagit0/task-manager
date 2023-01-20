@@ -3,6 +3,7 @@ import { LoginService } from '../services/login.service';
 import Swal from 'sweetalert2'
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,16 @@ img_logo: string = "assets/images/logo-icon-shyam-steel.png";
 
 taskBtn:boolean=true;
 loginMenu:boolean=true;
-  
-  constructor() { }
+token?: string | null;
+
+  constructor(private commonService: CommonService) { }
+
   ngOnInit(): void {
+    this.token = localStorage.getItem('token')
+  }
+
+  logout() {
+    this.commonService.logout();
   }
 }
 

@@ -1,15 +1,12 @@
 
-<app-header></app-header>
 <ul class="login-box">
     <li><mat-card>
             <form [formGroup]="loginvalue" (ngSubmit)="onSubmit()">
-
             <ul class="login-data">
                 <li>
                 <h4>User Login</h4>
                 </li>
                 <li>
-
                 <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>User name</mat-label>
                         <input matInput type="text" placeholder="User" formControlName="username">

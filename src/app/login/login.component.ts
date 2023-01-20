@@ -4,6 +4,9 @@ import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import Swal from 'sweetalert2'
 import { AuthService } from '../services/auth.service';
+import { ApiService } from '../services/api.service';
+import { LoginBody, LoginResponse } from '../models/login';
+import { CommonService } from '../services/common.service';
 
 @Component({
     selector: 'app-login',
@@ -26,9 +29,8 @@ export class LoginComponent implements OnInit {
     taskshowhide: boolean | undefined;
     loginshowhide: boolean | undefined;
 
-    constructor(private userlogindata: LoginService, private router: Router, private loginservice: AuthService) {
-
-       
+    constructor(private userlogindata: LoginService, private router: Router, private loginservice: AuthService,
+        private apiService: ApiService, private commonService: CommonService) {
 
         this.loginvalue = new FormGroup({
             username: new FormControl('', [Validators.required]),
@@ -40,6 +42,8 @@ export class LoginComponent implements OnInit {
 
     }
 
+    ngOnInit(): void { }
+
     public checkError = (controlName: string, errorName: string) => {
         return this.loginvalue.controls[controlName].hasError(errorName);
     }
@@ -48,48 +52,17 @@ export class LoginComponent implements OnInit {
     error = false;
     loading = false;
 
-    onSubmit() {
-        this.userlogindata.userloingSave(this.loginvalue.value).subscribe((result: any) => {
-            
-            console.log(result,'result');
-
-            if (result.error === false) {
-
-                localStorage.setItem("token", result.result[0].token);
+    onSubmit(): void {
+        this.apiService.httpPost<LoginBody, LoginResponse>('auth/login', this.loginvalue.value).subscribe((data: any) => {
+            if (data.error) {
+                Swal.fire('', data.details[0].msg);
+            } else {
+                localStorage.setItem("token", data.result[0].token);
                 Swal.fire('', 'Successfully loged in');
                 this.router.navigate(['/task-management-portal']);
-                
-            } else {
-                Swal.fire('', 'User Name and Password not valid');
-                this.router.navigate(['/login']);
             }
-        });
+        })
     }
-
-
-
-    onLogout() {
-        return localStorage.getItem('token');
-        this.router.navigate(['/login']);
-    }
-
-
-
-
-    ngOnInit() { }
-
-    // proceedLogin() {
-    // this.loginservice.proceedLogin(this.loginvalue.value).subscribe((result:any)=>{
-    // if (this.loginvalue.valid && result.error === false) {
-    // Swal.fire('','Successfully loged in');
-    // localStorage.setItem('token', result.result[0].token);
-    // this.router.navigate(['/task-management-portal']);
-    // } else {
-    //   Swal.fire('','User Name and Password not valid');
-    // }
-    // })
-
-    // }
 
 
     loginHeader(){
