@@ -1,5 +1,4 @@
-
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
     <mat-toolbar-row>
     <ul class="header-box">
     <li><span class="logo-icon"><img src="/assets/images/logo-icon-shyam-steel.png" alt=""></span></li>
@@ -7,17 +6,18 @@
 
 <li>
   <ul class="taskmenu">
-    <li><button mat-button routerLink="/task-management-portal">Task Management</button></li>
-    <li> <button mat-button routerLink="/user-management-portal">User Management</button></li>
+    <li [routerLinkActive]="'active'"><a routerLink ="/task-management-portal">Task Management</a></li>
+    <li [routerLinkActive]="'active'"><a routerLink="/user-management-portal">User Management</a></li>
   </ul>
   
 </li>
 
     <li>
-      <button mat-button [matMenuTriggerFor]="menu">HI Subhabrata <mat-icon>keyboard_arrow_down</mat-icon></button>
+      <button mat-button [matMenuTriggerFor]="menu">Hi Administrator <mat-icon>keyboard_arrow_down</mat-icon></button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/"><mat-icon>settings_power</mat-icon>Logout</button>
+        <button mat-menu-item (click)="logout()"><mat-icon>settings_power</mat-icon>Logout</button>
       </mat-menu>
     </li>
     </ul>
     </mat-toolbar-row>
+     -->

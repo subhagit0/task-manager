@@ -3,7 +3,7 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl, Validators, } from '@angular/forms';
 import { AddUsersService } from 'src/app/services/add-users.service';
 import { SweetAlertOptions } from 'sweetalert2';
@@ -43,20 +43,17 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class UserManagementPortalComponent implements AfterViewInit {
 
-
- 
-
   displayedColumns: string[] = ['position', 'path', 'filename', 'date'];
+
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   getusersavedata:any
 
   constructor(private dialog: MatDialog, private adduserdisplay:AddUsersService) {
+
   this.adduserdisplay.getusersavedata().subscribe((data)=>{
     // console.log("data", data);
     this.getusersavedata= data;
@@ -102,9 +99,7 @@ export class AddUsers implements OnInit {
 
   adduser: FormGroup
 
-  constructor(private dialog: MatDialog, private addusreslist: AddUsersService) {
-
-    
+  constructor(private dialog: MatDialog, private addusreslist: AddUsersService, private dialogRef: MatDialogRef<AddUsers>) {
 
     this.adduser = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -164,5 +159,13 @@ export class AddUsers implements OnInit {
     };
 
   }
+
+
+  close() {
+    this.dialogRef.close();
+}
+
+
+  
 
 }

@@ -5,15 +5,16 @@ import { LoginService } from './services/login.service';
 import { TaskManagementPortalComponent } from './task-management/task-management-portal/task-management-portal.component';
 import { TaskManagementComponent } from './task-management/task-management.component';
 import { UserManagementPortalComponent } from './task-management/user-management-portal/user-management-portal.component';
+import { DelayResolver } from './delay-resolver';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
 // { path: '', component:TaskManagementComponent }
-  { path: '', component: LoginComponent},
-  { path: 'task-management', component:TaskManagementComponent },
-  { path: 'task-management-portal', component:TaskManagementPortalComponent},
-  { path: 'user-management-portal', component:UserManagementPortalComponent},
-
-];
+  { path: '', component: LoginComponent, resolve: {data: DelayResolver }},
+  { path: 'task-management', component:TaskManagementComponent, resolve: {data: DelayResolver }},
+  { path: 'task-management-portal', component:TaskManagementPortalComponent, resolve: {data: DelayResolver }},
+  { path: 'user-management-portal', component:UserManagementPortalComponent, resolve: {data: DelayResolver }},
+]; 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

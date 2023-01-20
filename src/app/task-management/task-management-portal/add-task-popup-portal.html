@@ -1,50 +1,53 @@
 <h1 mat-dialog-title class="underline">Task <span class="close"><button mat-dialog-close class="close">X</button></span></h1>
 <div mat-dialog-content>
-  <form [formGroup]="tasks" (ngSubmit)="taskSubmit()">
-  
+  <form [formGroup]="tasks" (ngSubmit)="taskSaveSubmit()">
+
   <ul class="task-box">
+
+    <li>
+      <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>File Name</mat-label>
+           <input matInput type="text" placeholder="Enter File Name" formControlName="fileName">
+           <mat-error *ngIf="checkError('fileName', 'required')">Fine name is required</mat-error>
+          </mat-form-field>
+      </li>
+
     <li>
     <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Enter Path</mat-label>
-         <input matInput type="text" placeholder="Enter Path" formControlName="path">
-         <mat-error *ngIf="checkError('path', 'required')">Path is required</mat-error>
+         <input matInput type="text" placeholder="Enter Path" formControlName="filePath">
+         <mat-error *ngIf="checkError('filePath', 'required')">Path is required</mat-error>
     </mat-form-field>
     </li>
-    <li>
-        <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>File Name</mat-label>
-             <input matInput type="text" placeholder="Enter File Name" formControlName="filename">
-             <mat-error *ngIf="checkError('filename', 'required')">Fine name is required</mat-error>
-            </mat-form-field>
-        </li>
+  
 
     </ul>
 
 <ul class="file-type">
+
   <li>
     <p>File Type</p>
     <mat-radio-group aria-label="Select an option" formControlName="fileType">
-    <mat-radio-button name="fileType" value="1">File</mat-radio-button>
-    <mat-radio-button name="fileType" value="2">Store Procedure</mat-radio-button>
+    <mat-radio-button name="fileType" value="FILE">File</mat-radio-button>
+    <mat-radio-button name="fileType" value ="SP">Store Procedure</mat-radio-button>
   </mat-radio-group>
-  </li>
-  <li>
-    <p>Changed in</p>
-    <mat-radio-group aria-label="Select an option" formControlName="changedIn" name="changed">
-    <mat-radio-button name="changed" value="1">Production</mat-radio-button>
-    <mat-radio-button name="changed" value="2">QA</mat-radio-button>
-  </mat-radio-group>
-  
+
   </li>
 
+  <li>
+    <p>Changed in</p>
+    <mat-radio-group aria-label="Select an option" formControlName="fileLocation">
+    <mat-radio-button name="fileLocation" value="PRODUCTION">Production</mat-radio-button>
+    <mat-radio-button name="fileLocation" value="QA">QA</mat-radio-button>
+  </mat-radio-group>
+  </li>
+  
 </ul>
 
 <ul class="submit-btn">
-  <li><button mat-button mat-raised-button color="primary">Submit</button></li>
+  <li><button mat-button mat-raised-button color="primary" (click)="close()" [disabled]="!tasks.valid">Submit</button></li>
   <!-- [disabled]="!tasks.valid" -->
 </ul>
 
 </form>
-
 </div>
-

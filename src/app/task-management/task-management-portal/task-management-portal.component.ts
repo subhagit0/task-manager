@@ -1,50 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import {AfterViewInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatDialog} from '@angular/material/dialog';
-import { FormBuilder, FormGroup, FormControl,Validators,} from '@angular/forms';
+import { AfterViewInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, FormControl, Validators, } from '@angular/forms';
+import { AddTaskService } from 'src/app/services/add-task.service';
+import { TaskManagementTableDataService } from 'src/app/services/task-management-table-data.service';
+import { addData } from './models/interfaceadddata';
 
 export interface PeriodicElement {
-  path: string;
-  position: number;
-  filename: string;
-  date: string;
+  file_name: string;
+  file_path: string;
+  file_type: string;
+  file_location: string;
+  file_status: string;
+  createdAt: string;
 }
 
 /** Constants used to fill up our data base. */
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, path: 'https://apnaghar1.shyamsteel.com/', filename: 'Tirupati Construction', date: '01-12-2022'},
-  {position: 2, path: 'https://apnaghar2.shyamsteel.com/', filename: 'Balagi Construction', date: '02-12-2022'},
-  {position: 3, path: 'https://apnaghar3.shyamsteel.com/', filename: 'patna Construction', date: '03-12-2022'},
-  {position: 4, path: 'https://apnaghar4.shyamsteel.com/', filename: 'Tirupati Construction', date: '04-12-2022'},
-  {position: 5, path: 'https://apnaghar5.shyamsteel.com/', filename: 'Suvom Construction', date: '05-12-2022'},
-  {position: 6, path: 'https://apnaghar6.shyamsteel.com/', filename: 'Abc Construction', date: '06-12-2022'},
-  {position: 7, path: 'https://apnaghar7.shyamsteel.com/', filename: 'Star Housing Construction', date: '07-12-2022'},
-  {position: 8, path: 'https://apnaghar8.shyamsteel.com/', filename: 'BBC Construction', date: '08-12-2022'},
-  {position: 9, path: 'https://apnaghar9.shyamsteel.com/', filename: 'Xyz Construction', date: '09-12-2022'},
-  {position: 10,path: 'https://apnaghar10.shyamsteel.com/', filename: 'Srinivasan Construction', date: '10-12-2022'}
-
-];
+const ELEMENT_DATA: PeriodicElement[] = [];
 
 @Component({
   selector: 'app-task-management-portal',
   templateUrl: './task-management-portal.component.html',
   styleUrls: ['./task-management-portal.component.css']
 })
+
 export class TaskManagementPortalComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['position', 'path', 'filename', 'date'];
+  // displayedColumns: string[] = ['id','name', 'email', 'designation', 'created'];
+
+  displayedColumns: string[] = ['file_name', 'file_path', 'file_type', 'file_location', 'file_status', 'createdAt'];
+
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dialog:MatDialog) { }
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private dialog: MatDialog, private taskdata: TaskManagementTableDataService,) {
+
+    this.taskdata.getTaskData().subscribe((data: any) => {
+      console.log(data);
+      this.dataSource.data = data.result;
+    });
+
+    // const a = this.taskdata.getTaskData();
+    // this.dataSource.data = a;
+    // console.log(a);
+  }
 
 
   ngAfterViewInit() {
@@ -53,6 +59,7 @@ export class TaskManagementPortalComponent implements AfterViewInit {
   }
 
   applyFilter(event: Event) {
+
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -63,9 +70,9 @@ export class TaskManagementPortalComponent implements AfterViewInit {
 
   openTaskinfo() {
     this.dialog.open(AddTaskPopupPortal, {
-        width: '60%',
+      width: '60%',
     });
-}
+  }
 
   ngOnInit(): void {
   }
@@ -80,39 +87,73 @@ export class TaskManagementPortalComponent implements AfterViewInit {
 
 export class AddTaskPopupPortal implements OnInit {
 
-file:boolean=true;
-tasks: FormGroup;
-fileType = 1;
+  file: boolean = true;
+  tasks: FormGroup;
+  model: addData;
+  fileType = 1;
+  option: number | undefined
 
-constructor() { 
+
+  constructor(private addtaskservice: AddTaskService, private dialog: MatDialog, private dialogRef: MatDialogRef<AddTaskPopupPortal>) {
+
     this.tasks = new FormGroup({
-    path: new FormControl('', [Validators.required]),
-    filename: new FormControl('', [Validators.required]),
-    fileType: new FormControl(''),
-    changedIn: new FormControl('')
-  });
-}
+      fileName: new FormControl('', [Validators.required]),
+      filePath: new FormControl('', [Validators.required]),
+      fileType: new FormControl(''),
+      fileLocation: new FormControl('')
+    });
+
+    this.model = this.tasks.value;
+
+  }
+
+  onItemChange(value: any) {
+    console.log(" Value is : ", value);
+  }
+
+  public checkError = (controlName: string, errorName: string) => {
+    return this.tasks.controls[controlName].hasError(errorName);
+  }
 
 
-onItemChange(value: any){
-  console.log(" Value is : ", value );
-}
-
-public checkError = (controlName: string, errorName: string) => {
-  return this.tasks.controls[controlName].hasError(errorName);
-}
+  // taskSaveSubmit() {
+  //   this.addtaskservice.adduserTask(this.tasks.value).subscribe((result) => {
+  //     console.log(result);
+  //   });
 
 
-taskSubmit(){
-  console.log (this.tasks.value)
-}
-
-changeGender(e:any) {
-  console.log(e.target.value);
-}
+  //  taskSaveSubmit() {
+  //   this.addtaskservice.adduserTask(this.tasks.value).subscribe((result) => {
+  //     console.log(result);
+  //   });
+  // }
 
 
-ngOnInit(): void { }
+  taskSaveSubmit() {
+    this.model = this.tasks.value;
+    this.addtaskservice.adduserTask(this.model).subscribe (result => {
+        // if ( ! result.error) {
+        //   this.router.navigateByUrl('/login');
+        // }
+        console.log(this.tasks.value);
+      }
+    )
+  }
+
+
+
+
+
+  close() {
+    return this.dialogRef.close();
+  }
+
+  changeGender(e: any) {
+    console.log(e.target.value);
+  }
+
+
+  ngOnInit(): void { }
 
 
 }

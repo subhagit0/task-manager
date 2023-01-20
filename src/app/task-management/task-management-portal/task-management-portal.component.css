@@ -105,6 +105,7 @@ th, td {
 table.mat-table th {
     background: #3f51b5;
     color: #fff;
+    font-size: 16px;
 }
 
 span.addtask {
@@ -194,8 +195,6 @@ ul.file-type p {
   font-size: 19px;
   cursor: pointer;
 }
-
-
 
 @media only screen and (max-width: 600px) {
 

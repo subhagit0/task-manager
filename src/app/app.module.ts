@@ -25,6 +25,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { AddTaskPopupPortal, TaskManagementPortalComponent } from './task-management/task-management-portal/task-management-portal.component';
 import { AddUsers, UserManagementPortalComponent } from './task-management/user-management-portal/user-management-portal.component';
+import { LoginHeaderComponent } from './login/login-header/login-header.component';
 
 
 
@@ -40,7 +41,8 @@ import { AddUsers, UserManagementPortalComponent } from './task-management/user-
     TaskManagementPortalComponent,
     UserManagementPortalComponent,
     AddTaskPopupPortal,
-    AddUsers
+    AddUsers,
+    LoginHeaderComponent
   
   ],
   imports: [

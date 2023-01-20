@@ -24,7 +24,7 @@
     </mat-form-field>
     </li>
 
-    <li><button mat-button mat-raised-button color="primary" [disabled]="!adduser.valid">Submit</button></li>
+    <li><button mat-button mat-raised-button color="primary" (click)="close()" [disabled]="!adduser.valid">Submit</button></li>
 
     
     <!-- [disabled]="!tasks.valid" -->

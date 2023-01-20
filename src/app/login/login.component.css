@@ -46,6 +46,7 @@ ul.login-data li:first-child h4 {
 }
 
 
+
 @media only screen and (max-width: 600px) {
 
   .login-box {
@@ -56,4 +57,79 @@ ul.login-data li:first-child h4 {
 width: 90%;
 }
 
+}
+
+
+.logo-icon img {
+  margin-top: 10px;
+}
+
+ul.header-box {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+ul.header-box li:nth-child(2n) {
+  padding-left: 10px;
+}
+
+ul.header-box li:nth-child(3n) {
+  width: 40%;
+  text-align: left;
+  margin-left: 45px;
+}
+
+
+ul.header-box li:nth-child(4n) {
+  width: 33%;
+  text-align: right;
+}
+
+ul.taskmenu {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+ul.taskmenu li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+ul.taskmenu li button {
+  background: #0d229b;
+  margin-right: 7px;
+}
+ul.taskmenu li  {
+  background: #3f51b5;
+  font-size: 14px;
+  padding: 4px 8px;
+  margin-right: 10px;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  border: solid 1px #25337c;
+}
+
+.active {
+  background: #2196f3 !important;
+  color: #fff !important;
+}
+
+ul.taskmenu li a {
+  display: block;
+}
+
+@media only screen and (max-width: 600px) {
+  ul.header-box li:nth-child(2n) {
+      font-size: 15px;
+  }
 }
